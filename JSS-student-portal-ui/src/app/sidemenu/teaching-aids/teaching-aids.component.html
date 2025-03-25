@@ -2,7 +2,9 @@
   <div class="row no-gutters">
     <!-- Sidebar -->
     <nav class="col-md-3 col-lg-2 d-md-block bg-dark sidebar" id="sidebarMenu">
-      <div class="sidebar-header d-flex align-items-center justify-content-between px-3">
+      <div
+        class="sidebar-header d-flex align-items-center justify-content-between px-3"
+      >
         <span class="text-white h5">Menu</span>
         <button class="btn btn-outline-light btn-sm" id="toggleSidebar">
           <i class="bi bi-list"></i>
@@ -11,27 +13,57 @@
       <div class="position-sticky">
         <ul class="nav flex-column">
           <li class="nav-item mb-3">
-            <a routerLink="/home" routerLinkActive="active" (click)="home()" class="nav-link text-white">
+            <a
+              routerLink="/home"
+              routerLinkActive="active"
+              (click)="home()"
+              class="nav-link text-white"
+            >
               <i class="bi bi-house mr-2"></i> Home
             </a>
           </li>
           <li class="nav-item mb-3">
-            <a routerLink="/time-table" routerLinkActive="active" (click)="timetable()" class="nav-link text-white">
+            <a
+              routerLink="/time-table"
+              routerLinkActive="active"
+              (click)="timetable()"
+              class="nav-link text-white"
+            >
               <i class="bi bi-calendar3 mr-2"></i> Time Table
             </a>
           </li>
-           <!-- <li class="nav-item mb-3">
+          <!-- <li class="nav-item mb-3">
             <a routerLink="/students-management" routerLinkActive="active" (click)="studentsmanagement()" class="nav-link text-white">
               <i class="bi bi-person-workspace mr-2"></i> Students Management
             </a>
           </li> -->
           <li class="nav-item mb-3">
-            <a routerLink="/attendance-management" routerLinkActive="active" (click)="attendancemanagement()" class="nav-link text-white">
+            <a
+              routerLink="/attendance-management"
+              routerLinkActive="active"
+              (click)="attendancemanagement()"
+              class="nav-link text-white"
+            >
               <i class="bi bi-check-square mr-2"></i> Attendance Management
             </a>
           </li>
           <li class="nav-item mb-3">
-            <a routerLink="/question-bank" routerLinkActive="active" (click)="questionbank()" class="nav-link text-white">
+            <a
+              routerLink="/ia-module"
+              routerLinkActive="active"
+              (click)="iamodule()"
+              class="nav-link text-white"
+            >
+              <i class="bi bi-card-list mr-2"></i> IA Module
+            </a>
+          </li>
+          <li class="nav-item mb-3">
+            <a
+              routerLink="/question-bank"
+              routerLinkActive="active"
+              (click)="questionbank()"
+              class="nav-link text-white"
+            >
               <i class="bi bi-book mr-2"></i> Question Bank
             </a>
           </li>
@@ -41,17 +73,32 @@
             </a>
           </li> -->
           <li class="nav-item mb-3">
-            <a routerLink="/feedback-system" routerLinkActive="active" (click)="feedbacksystem()" class="nav-link text-white">
+            <a
+              routerLink="/feedback-system"
+              routerLinkActive="active"
+              (click)="feedbacksystem()"
+              class="nav-link text-white"
+            >
               <i class="bi bi-chat-dots mr-2"></i> Feedback System
             </a>
           </li>
           <li class="nav-item mb-3">
-            <a routerLink="/lesson-plan" routerLinkActive="active" (click)="lessonplan()" class="nav-link text-white">
+            <a
+              routerLink="/lesson-plan"
+              routerLinkActive="active"
+              (click)="lessonplan()"
+              class="nav-link text-white"
+            >
               <i class="bi bi-file-earmark-text mr-2"></i> Lesson Plan
             </a>
           </li>
           <li class="nav-item mb-3">
-            <a routerLink="/teaching-aids" routerLinkActive="active" (click)="teachingaids()" class="nav-link text-white">
+            <a
+              routerLink="/teaching-aids"
+              routerLinkActive="active"
+              (click)="teachingaids()"
+              class="nav-link text-white"
+            >
               <i class="bi bi-easel mr-2"></i> Teaching Aids
             </a>
           </li>
@@ -69,18 +116,16 @@
       </div>
     </nav>
 
-
-   
-
     <!-- Content Area -->
-    <main class="col-md-9 col-lg-10 px-4 pt-4" style="background-image: url(./teachingaids.jpg)">
+    <main
+      class="col-md-9 col-lg-10 px-4 pt-4"
+      style="background-image: url(./teachingaids.jpg)"
+    >
       <div class="text-center">
         <div class="container mt-5">
           <!-- <h2 class="text-center"><b>TEACHING-AID DETAILS</b></h2> -->
-         
 
-           <div class="card shadow-sm">
-            
+          <div class="card shadow-sm">
             <div class="card-body">
               <h2 class="text-center"><b>TEACHING-AID DETAILS</b></h2>
               <table class="table table-striped table-bordered table-hover">
@@ -97,10 +142,15 @@
                   <tr *ngFor="let document of lessonplandocuments">
                     <td>{{ document.semester }}</td>
                     <td>{{ document.fileName }}</td>
-                    <td>{{ document.uploadDate | date:'shortDate' }}</td> <!-- Date formatting -->
-                    
+                    <td>{{ document.uploadDate | date : "shortDate" }}</td>
+                    <!-- Date formatting -->
+
                     <td>
-                      <a [href]="document.documentPath" download="{{ document.fileName }}" class="btn btn-success btn-sm">
+                      <a
+                        [href]="document.documentPath"
+                        download="{{ document.fileName }}"
+                        class="btn btn-success btn-sm"
+                      >
                         Download
                       </a>
                     </td>
@@ -116,8 +166,6 @@
             </div>
           </div>
         </div>
-        
-        
       </div>
     </main>
   </div>

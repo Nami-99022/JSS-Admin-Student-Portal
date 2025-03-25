@@ -1,16 +1,25 @@
 <div class="container-fluid">
   <div class="row no-gutters">
-    
     <nav class="col-md-3 col-lg-2 d-md-block bg-dark sidebar" id="sidebarMenu">
       <div class="position-sticky">
         <ul class="nav flex-column">
           <li class="nav-item mb-3">
-            <a routerLink="/home" routerLinkActive="active" (click)="home()" class="nav-link text-white">
+            <a
+              routerLink="/home"
+              routerLinkActive="active"
+              (click)="home()"
+              class="nav-link text-white"
+            >
               <i class="bi bi-house mr-2"></i> Home
             </a>
           </li>
           <li class="nav-item mb-3">
-            <a routerLink="/time-table" routerLinkActive="active" (click)="timetable()" class="nav-link text-white">
+            <a
+              routerLink="/time-table"
+              routerLinkActive="active"
+              (click)="timetable()"
+              class="nav-link text-white"
+            >
               <i class="bi bi-calendar3 mr-2"></i> Time Table
             </a>
           </li>
@@ -25,12 +34,32 @@
             </a>
           </li> -->
           <li class="nav-item mb-3">
-            <a routerLink="/attendance-management" routerLinkActive="active" (click)="attendancemanagement()" class="nav-link text-white">
+            <a
+              routerLink="/attendance-management"
+              routerLinkActive="active"
+              (click)="attendancemanagement()"
+              class="nav-link text-white"
+            >
               <i class="bi bi-check-square mr-2"></i> Attendance Management
             </a>
           </li>
           <li class="nav-item mb-3">
-            <a routerLink="/question-bank" routerLinkActive="active" (click)="questionbank()" class="nav-link text-white">
+            <a
+              routerLink="/ia-module"
+              routerLinkActive="active"
+              (click)="iamodule()"
+              class="nav-link text-white"
+            >
+              <i class="bi bi-card-list mr-2"></i> IA Module
+            </a>
+          </li>
+          <li class="nav-item mb-3">
+            <a
+              routerLink="/question-bank"
+              routerLinkActive="active"
+              (click)="questionbank()"
+              class="nav-link text-white"
+            >
               <i class="bi bi-book mr-2"></i> Question Bank
             </a>
           </li>
@@ -40,17 +69,32 @@
             </a>
           </li> -->
           <li class="nav-item mb-3">
-            <a routerLink="/feedback-system" routerLinkActive="active" (click)="feedbacksystem()" class="nav-link text-white">
+            <a
+              routerLink="/feedback-system"
+              routerLinkActive="active"
+              (click)="feedbacksystem()"
+              class="nav-link text-white"
+            >
               <i class="bi bi-chat-dots mr-2"></i> Feedback System
             </a>
           </li>
           <li class="nav-item mb-3">
-            <a routerLink="/lesson-plan" routerLinkActive="active" (click)="lessonplan()" class="nav-link text-white">
+            <a
+              routerLink="/lesson-plan"
+              routerLinkActive="active"
+              (click)="lessonplan()"
+              class="nav-link text-white"
+            >
               <i class="bi bi-file-earmark-text mr-2"></i> Lesson Plan
             </a>
           </li>
           <li class="nav-item mb-3">
-            <a routerLink="/teaching-aids" routerLinkActive="active" (click)="teachingaids()" class="nav-link text-white">
+            <a
+              routerLink="/teaching-aids"
+              routerLinkActive="active"
+              (click)="teachingaids()"
+              class="nav-link text-white"
+            >
               <i class="bi bi-easel mr-2"></i> Teaching Aids
             </a>
           </li>
@@ -68,95 +112,114 @@
       </div>
     </nav>
 
-    
-   
-    <main class="col-md-9 col-lg-10 px-4 pt-4"  style="background-image: url(./studentbg.webp)">
-      <div class="col-12 container-fluid col-md-5"> 
-      <div class="card text-white bg-white h-10 shadow-sm">
-     <h1 class="mb-2" >Welcome {{ username }}</h1>
-    </div>
-  </div>
-    <div class="container mt-5">
-    <div class="row g-4 align-items-stretch">
-     
-      <div class="col-12 col-md-6">
-        <div class="card text-white bg-warning h-100 shadow-sm">
-          <div class="card-body">
-            <h5 class="card-title">
-              <b><i class="fas fa-university"></i> About JSS Polytechnic</b>
-            </h5>
-            <p class="card-text">
-              The JSS Polytechnic, Mysuru was established in the year 1986. The campus is situated on an
-              extensive elevated stretch of over 6 Hectares in the JSS Technical Institutions’ Campus
-              to the west of the University of Mysuru, Manasagangothri..
-            </p>
-          </div>
+    <main
+      class="col-md-9 col-lg-10 px-4 pt-4"
+      style="background-image: url(./studentbg.webp)"
+    >
+      <div class="col-12 container-fluid col-md-5">
+        <div class="card text-white bg-white h-10 shadow-sm">
+          <h1 class="mb-2">Welcome {{ username }}</h1>
         </div>
       </div>
-
-     
-      <div class="col-12 col-md-6">
-        <div class="card text-white bg-success h-100 shadow-sm">
-          <div class="card-body">
-            <h5 class="card-title">
-              <b><i class="fas fa-lightbulb"></i> Our Vision</b>
-            </h5>
-            <p class="card-text">
-              Our vision is to foster an environment of academic excellence and innovation, empowering
-              students to achieve their full potential and contribute to the global community.
-            </p>
+      <div class="container mt-5">
+        <div class="row g-4 align-items-stretch">
+          <div class="col-12 col-md-6">
+            <div class="card text-white bg-warning h-100 shadow-sm">
+              <div class="card-body">
+                <h5 class="card-title">
+                  <b><i class="fas fa-university"></i> About JSS Polytechnic</b>
+                </h5>
+                <p class="card-text">
+                  The JSS Polytechnic, Mysuru was established in the year 1986.
+                  The campus is situated on an extensive elevated stretch of
+                  over 6 Hectares in the JSS Technical Institutions’ Campus to
+                  the west of the University of Mysuru, Manasagangothri..
+                </p>
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
-    
-      
-<div class="col-12"></div>
-  <div class="col-12 container-fluid col-md-6"> 
-    <div class="card bg-dark h-100 shadow-sm">
-      <!-- <div class="card"> -->
-        <!-- <div class="container mt-5"> -->
-          <!-- <h4 class="text-center mb-4 text-black"> <b><i class="fas fa-users"></i>  Loggedin Student Details</b></h4> -->
-          <h4 class="text-center mb-4 text-white" style="padding-top: 15px;"> 
-            <b><i class="fas fa-users"></i> Loggedin Student Details</b>
-        </h4>
-        
-          <div class="card-body bg-primary" style="padding-top: 5px; padding-bottom: 5px;">
-            <div *ngIf="loggedInStudent; else loading" class="text-dark" >
-             
-              <!-- <div class="mb-3"> -->
-                <div class="logo"></div>
-                <p><strong class="text-white">Username:</strong> {{ loggedInStudent.userName }}</p>
-                <p><strong class="text-white">Student ID:</strong> {{ loggedInStudent.regno }}</p>
-                <p><strong class="text-white">Email:</strong> {{ loggedInStudent.email }}</p>
-                <p><strong class="text-white">Contact No:</strong> {{ loggedInStudent.phoneno }}</p>
-                <p><strong class="text-white">Address:</strong> {{ loggedInStudent.address }}</p>
-                <p><strong class="text-white">Department:</strong> {{ loggedInStudent.dept }}</p>
-                <p><strong class="text-white">Semester:</strong> {{ loggedInStudent.semester }}</p>
 
-                
-  
-                <!-- Uncomment to show student photo if path exists -->
-                <!-- <div *ngIf="studentPhotoPath" class="text-center mt-3">
+          <div class="col-12 col-md-6">
+            <div class="card text-white bg-success h-100 shadow-sm">
+              <div class="card-body">
+                <h5 class="card-title">
+                  <b><i class="fas fa-lightbulb"></i> Our Vision</b>
+                </h5>
+                <p class="card-text">
+                  Our vision is to foster an environment of academic excellence
+                  and innovation, empowering students to achieve their full
+                  potential and contribute to the global community.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12"></div>
+          <div class="col-12 container-fluid col-md-6">
+            <div class="card bg-dark h-100 shadow-sm">
+              <!-- <div class="card"> -->
+              <!-- <div class="container mt-5"> -->
+              <!-- <h4 class="text-center mb-4 text-black"> <b><i class="fas fa-users"></i>  Loggedin Student Details</b></h4> -->
+              <h4 class="text-center mb-4 text-white" style="padding-top: 15px">
+                <b><i class="fas fa-users"></i> Loggedin Student Details</b>
+              </h4>
+
+              <div
+                class="card-body bg-primary"
+                style="padding-top: 5px; padding-bottom: 5px"
+              >
+                <div *ngIf="loggedInStudent; else loading" class="text-dark">
+                  <!-- <div class="mb-3"> -->
+                  <div class="logo"></div>
+                  <p>
+                    <strong class="text-white">Username:</strong>
+                    {{ loggedInStudent.userName }}
+                  </p>
+                  <p>
+                    <strong class="text-white">Student ID:</strong>
+                    {{ loggedInStudent.regno }}
+                  </p>
+                  <p>
+                    <strong class="text-white">Email:</strong>
+                    {{ loggedInStudent.email }}
+                  </p>
+                  <p>
+                    <strong class="text-white">Contact No:</strong>
+                    {{ loggedInStudent.phoneno }}
+                  </p>
+                  <p>
+                    <strong class="text-white">Address:</strong>
+                    {{ loggedInStudent.address }}
+                  </p>
+                  <p>
+                    <strong class="text-white">Department:</strong>
+                    {{ loggedInStudent.dept }}
+                  </p>
+                  <p>
+                    <strong class="text-white">Semester:</strong>
+                    {{ loggedInStudent.semester }}
+                  </p>
+
+                  <!-- Uncomment to show student photo if path exists -->
+                  <!-- <div *ngIf="studentPhotoPath" class="text-center mt-3">
                   <img [src]="'http://localhost:8080/users/student1/photo/' + studentPhotoPath" alt="Student Photo" class="img-thumbnail rounded-circle" width="100">
                 </div> -->
+                  <!-- </div> -->
+                </div>
+
+                <!-- Loading template -->
+                <ng-template #loading>
+                  <div class="text-center">
+                    <p>Loading student data...</p>
+                  </div>
+                </ng-template>
+              </div>
+              <!-- </div> -->
               <!-- </div> -->
             </div>
-  
-            <!-- Loading template -->
-            <ng-template #loading>
-              <div class="text-center">
-                <p>Loading student data...</p>
-              </div>
-            </ng-template>
           </div>
-        <!-- </div> -->
-      <!-- </div> -->
-     </div>
-    </div>
-   </div>
+        </div>
+      </div>
+    </main>
   </div>
-     </main>
-  
-
-  
 </div>

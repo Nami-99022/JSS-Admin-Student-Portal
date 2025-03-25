@@ -5,12 +5,22 @@
       <div class="position-sticky">
         <ul class="nav flex-column">
           <li class="nav-item mb-3">
-            <a routerLink="/home" routerLinkActive="active" (click)="home()" class="nav-link text-white">
+            <a
+              routerLink="/home"
+              routerLinkActive="active"
+              (click)="home()"
+              class="nav-link text-white"
+            >
               <i class="bi bi-house mr-2"></i> Home
             </a>
           </li>
           <li class="nav-item mb-3">
-            <a routerLink="/time-table" routerLinkActive="active" (click)="timetable()" class="nav-link text-white">
+            <a
+              routerLink="/time-table"
+              routerLinkActive="active"
+              (click)="timetable()"
+              class="nav-link text-white"
+            >
               <i class="bi bi-calendar3 mr-2"></i> Time Table
             </a>
           </li>
@@ -20,12 +30,32 @@
             </a>
           </li> -->
           <li class="nav-item mb-3">
-            <a routerLink="/attendance-management" routerLinkActive="active" (click)="attendancemanagement()" class="nav-link text-white">
+            <a
+              routerLink="/attendance-management"
+              routerLinkActive="active"
+              (click)="attendancemanagement()"
+              class="nav-link text-white"
+            >
               <i class="bi bi-check-square mr-2"></i> Attendance Management
             </a>
           </li>
           <li class="nav-item mb-3">
-            <a routerLink="/question-bank" routerLinkActive="active" (click)="questionbank()" class="nav-link text-white">
+            <a
+              routerLink="/ia-module"
+              routerLinkActive="active"
+              (click)="iamodule()"
+              class="nav-link text-white"
+            >
+              <i class="bi bi-card-list mr-2"></i> IA Module
+            </a>
+          </li>
+          <li class="nav-item mb-3">
+            <a
+              routerLink="/question-bank"
+              routerLinkActive="active"
+              (click)="questionbank()"
+              class="nav-link text-white"
+            >
               <i class="bi bi-book mr-2"></i> Question Bank
             </a>
           </li>
@@ -35,17 +65,32 @@
             </a>
           </li> -->
           <li class="nav-item mb-3">
-            <a routerLink="/feedback-system" routerLinkActive="active" (click)="feedbacksystem()" class="nav-link text-white">
+            <a
+              routerLink="/feedback-system"
+              routerLinkActive="active"
+              (click)="feedbacksystem()"
+              class="nav-link text-white"
+            >
               <i class="bi bi-chat-dots mr-2"></i> Feedback System
             </a>
           </li>
           <li class="nav-item mb-3">
-            <a routerLink="/lesson-plan" routerLinkActive="active" (click)="lessonplan()" class="nav-link text-white">
+            <a
+              routerLink="/lesson-plan"
+              routerLinkActive="active"
+              (click)="lessonplan()"
+              class="nav-link text-white"
+            >
               <i class="bi bi-file-earmark-text mr-2"></i> Lesson Plan
             </a>
           </li>
           <li class="nav-item mb-3">
-            <a routerLink="/teaching-aids" routerLinkActive="active" (click)="teachingaids()" class="nav-link text-white">
+            <a
+              routerLink="/teaching-aids"
+              routerLinkActive="active"
+              (click)="teachingaids()"
+              class="nav-link text-white"
+            >
               <i class="bi bi-easel mr-2"></i> Teaching Aids
             </a>
           </li>
@@ -63,57 +108,77 @@
       </div>
     </nav>
 
-    
-
-
-    <main class="col-md-9 col-lg-10 px-4 pt-4" style="background-image: url(./feedback.webp)">
+    <main
+      class="col-md-9 col-lg-10 px-4 pt-4"
+      style="background-image: url(./feedback.webp)"
+    >
       <!-- <div class="col-12 container-fluid col-md-5"> 
       <div class="card text-white bg-white h-8 shadow-sm">
      <h1 class="mb-1" >Feedback System Details</h1>
     </div>
   </div> -->
-          <h1 id="FeedbackSystemTitle" class="text-center mb-4">Feedback System</h1>
+      <h1 id="FeedbackSystemTitle" class="text-center mb-4">Feedback System</h1>
 
-          <div class="mb-4 d-flex justify-content-center">
-            <input
-              type="text"
-              class="form-control w-50"
-              placeholder="Search by feedback question"
-              [(ngModel)]="searchTerm"
-              (input)="performSearch()"
-            />
-          </div>
+      <div class="mb-4 d-flex justify-content-center">
+        <input
+          type="text"
+          class="form-control w-50"
+          placeholder="Search by feedback question"
+          [(ngModel)]="searchTerm"
+          (input)="performSearch()"
+        />
+      </div>
 
+      <div
+        class="btn-toolbar mb-4 d-flex justify-content-center"
+        role="toolbar"
+      >
+        <button
+          type="button"
+          class="btn btn-primary me-2"
+          (click)="displayManageFeedbacks()"
+        >
+          Manage Feedbacks
+        </button>
+        <!-- <button type="button" class="btn btn-outline-primary me-2" (click)="displayAddFeedbackForm()">Add Feedback</button> -->
+        <button
+          type="button"
+          class="btn btn-primary me-2"
+          (click)="displayAddFeedbackForm()"
+        >
+          Add Feedback
+        </button>
+      </div>
 
-          
-          <div class="btn-toolbar mb-4 d-flex justify-content-center" role="toolbar">
-            <button type="button" class="btn btn-primary me-2" (click)="displayManageFeedbacks()">Manage Feedbacks</button>
-            <!-- <button type="button" class="btn btn-outline-primary me-2" (click)="displayAddFeedbackForm()">Add Feedback</button> -->
-            <button type="button" class="btn btn-primary me-2" (click)="displayAddFeedbackForm()">Add Feedback</button>
-          </div>
-        
-         
-<table id="DisplayFeedbackList" class="table table-striped table-hover" *ngIf="showTable">
-  <thead class="thead-dark">
-    <tr>
-      <th>S.No</th>
-      <th>Feedback Question</th>
-      <th>Feedback Answer</th>
-      <th>Name</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let feedback of paginatedFeedbacks; let i = index" 
-        [ngClass]="{'table-warning': highlightedFeedbacks.includes(feedback)}">
-      <td>{{ (currentPage - 1) * pageSize + i + 1 }}</td>
-      <td>{{ feedback.question }}</td>
-      <td>{{ feedback.answer }}</td>
-      <td>{{ feedback.username }}</td>
-    </tr>
-  </tbody>
-</table>
+      <table
+        id="DisplayFeedbackList"
+        class="table table-striped table-hover"
+        *ngIf="showTable"
+      >
+        <thead class="thead-dark">
+          <tr>
+            <th>S.No</th>
+            <th>Feedback Question</th>
+            <th>Feedback Answer</th>
+            <th>Name</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            *ngFor="let feedback of paginatedFeedbacks; let i = index"
+            [ngClass]="{
+              'table-warning': highlightedFeedbacks.includes(feedback)
+            }"
+          >
+            <td>{{ (currentPage - 1) * pageSize + i + 1 }}</td>
+            <td>{{ feedback.question }}</td>
+            <td>{{ feedback.answer }}</td>
+            <td>{{ feedback.username }}</td>
+          </tr>
+        </tbody>
+      </table>
 
-<!-- <table id="DisplayFeedbackList" class="table table-striped table-hover" *ngIf="showTable">
+      <!-- <table id="DisplayFeedbackList" class="table table-striped table-hover" *ngIf="showTable">
   <thead class="thead-dark">
     <tr>
       <th>S.No</th>
@@ -134,40 +199,87 @@
 </table>
  -->
 
-        
-        
-<div class="pagination-controls d-flex justify-content-center mt-4" *ngIf="showTable">
-  <button class="btn btn-secondary me-2" (click)="previousPage()" [disabled]="currentPage === 1">Previous</button>
-  <span>Page {{ currentPage }} of {{ totalPages }}</span>
-  <button class="btn btn-secondary ms-2" (click)="nextPage()" [disabled]="currentPage === totalPages">Next</button>
-</div>
+      <div
+        class="pagination-controls d-flex justify-content-center mt-4"
+        *ngIf="showTable"
+      >
+        <button
+          class="btn btn-secondary me-2"
+          (click)="previousPage()"
+          [disabled]="currentPage === 1"
+        >
+          Previous
+        </button>
+        <span>Page {{ currentPage }} of {{ totalPages }}</span>
+        <button
+          class="btn btn-secondary ms-2"
+          (click)="nextPage()"
+          [disabled]="currentPage === totalPages"
+        >
+          Next
+        </button>
+      </div>
 
-        
-         
-        
-          <div id="AddFeedbackForm" *ngIf="showAddForm" class="d-flex justify-content-center mt-4">
-            <div class="w-100 p-4" style="max-width: 600px; border: 1px solid #ccc; border-radius: 8px;">
-              <h3 class="text-center">Add Feedback</h3>
-              <form (ngSubmit)="submitFeedback()">
-                <div class="form-group mb-3 row align-items-center">
-                  <label for="feedbackQuestionDropdown" class="col-sm-3 col-form-label">Select Question:</label>
-                  <div class="col-sm-8">
-                    <select class="form-control" id="feedbackQuestionDropdown" [(ngModel)]="selectedQuestion" name="selectedQuestion" required>
-                      <option value="" disabled selected>Select feedback question</option> 
-                      <option *ngFor="let question of feedbackQuestions" [value]="question.question">{{ question.question }}</option>
-                    </select>
-                  </div>
-                </div>
-                <div class="form-group mb-3 row align-items-center">
-                  <label for="feedback" class="col-sm-3 col-form-label">Your Answer:</label>
-                  <div class="col-sm-8">
-                    <input type="text" class="form-control" id="feedback" name="feedback" [(ngModel)]="feedbackText" required>
-                  </div>
-                </div>
-                <div class="text-center">
-                  <button type="submit" class="btn btn-success">Submit Feedback</button>
-                </div>
-              </form>
+      <div
+        id="AddFeedbackForm"
+        *ngIf="showAddForm"
+        class="d-flex justify-content-center mt-4"
+      >
+        <div
+          class="w-100 p-4"
+          style="max-width: 600px; border: 1px solid #ccc; border-radius: 8px"
+        >
+          <h3 class="text-center">Add Feedback</h3>
+          <form (ngSubmit)="submitFeedback()">
+            <div class="form-group mb-3 row align-items-center">
+              <label
+                for="feedbackQuestionDropdown"
+                class="col-sm-3 col-form-label"
+                >Select Question:</label
+              >
+              <div class="col-sm-8">
+                <select
+                  class="form-control"
+                  id="feedbackQuestionDropdown"
+                  [(ngModel)]="selectedQuestion"
+                  name="selectedQuestion"
+                  required
+                >
+                  <option value="" disabled selected>
+                    Select feedback question
+                  </option>
+                  <option
+                    *ngFor="let question of feedbackQuestions"
+                    [value]="question.question"
+                  >
+                    {{ question.question }}
+                  </option>
+                </select>
+              </div>
             </div>
-          </div>
-          
+            <div class="form-group mb-3 row align-items-center">
+              <label for="feedback" class="col-sm-3 col-form-label"
+                >Your Answer:</label
+              >
+              <div class="col-sm-8">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="feedback"
+                  name="feedback"
+                  [(ngModel)]="feedbackText"
+                  required
+                />
+              </div>
+            </div>
+            <div class="text-center">
+              <button type="submit" class="btn btn-success">
+                Submit Feedback
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>

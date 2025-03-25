@@ -251,7 +251,7 @@ export class AttendanceManagementComponent {
 
     this.http.delete(url).subscribe({
       next: (response) => {
-        this.getDocumentsBySemester();
+        this.getFileQuery();
         alert('File deleted successfully');
       },
       error: (error) => {
@@ -303,7 +303,7 @@ export class AttendanceManagementComponent {
           },
         });
     } else if (this.selectedSemesterInModal && this.selectedSubjectInModal) {
-      params = params.append('month', this.selectedMonthInModal);
+      params = params.append('subject', this.selectedSubjectInModal);
 
       this.http
         .get<any[]>(
@@ -373,10 +373,12 @@ export class AttendanceManagementComponent {
     this.loadingSubjectsInModal = true;
     this.selectedSubjectInModal = '';
     this.subjectsInModal = [];
-
+    let params = new HttpParams();
+    params = params.append('category', this.selectedDocumentCategory);
     this.http
       .get<Subject[]>(
-        `http://localhost:8080/api/alldocuments/semester/${this.selectedSemesterInModal}`
+        `http://localhost:8080/api/alldocuments/semester/${this.selectedSemesterInModal}`,
+        { params: params }
       )
       .subscribe({
         next: (data) => {

@@ -469,12 +469,21 @@ public class AllDocumentController {
     }
     
     @GetMapping("/semester/{semester}")
-    public ResponseEntity<List<String>> getAllSemesters(@PathVariable String semester) {
-        List<String> semesters = allDocumentRepo.findBySemester(semester).stream()
+    public ResponseEntity<List<String>> getAllSemesters(@PathVariable String semester,
+    													@RequestParam(required = false, defaultValue = "") String category) {
+    	List<String> semesters = new ArrayList<>();
+    	if (!category.isEmpty()) {
+    		 semesters = allDocumentRepo.findBySemesterAndDocumentCategory(semester, category).stream()
+            .map(AllDocument::getSubject)
+            .distinct()
+            .sorted()
+            .collect(Collectors.toList());}
+    	else {
+       semesters = allDocumentRepo.findBySemester(semester).stream()
                 .map(AllDocument::getSubject)
                 .distinct()
                 .sorted()
-                .collect(Collectors.toList());
+                .collect(Collectors.toList());}
         return ResponseEntity.ok(semesters);
     }
 

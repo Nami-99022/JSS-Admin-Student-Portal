@@ -233,10 +233,7 @@
       </div>
     </main> -->
 
-    <main
-      class="col-md-9 col-lg-10 px-4 pt-4"
-      style="background-image: url(/IAmodule.jpg)"
-    >
+    <main class="page-wrapper" style="background-image: url(/IAmodule.jpg)">
       <div class="text-center">
         <div class="container mt-4">
           <!-- Outer Border for IA Module -->
@@ -280,7 +277,7 @@
                     <option value="" disabled>Select Subject</option>
                     <option
                       *ngFor="let subject of subjects"
-                      [value]="subject.id"
+                      [value]="subject.subject"
                     >
                       {{ subject.subject }} ({{ subject.subjectCode }})
                     </option>
@@ -336,6 +333,97 @@
               <!-- Error Message -->
               <div class="alert alert-danger mt-3" *ngIf="errorMessage">
                 {{ errorMessage }}
+              </div>
+            </div>
+            <!-- View Documents Button -->
+            <button (click)="viewIADoc()" class="btn btn-primary">
+              View IA Documents
+            </button>
+
+            <!-- Modal for Viewing Documents -->
+            <div *ngIf="showModal" class="modal-overlay">
+              <div class="modal-content">
+                <span (click)="closeModal()" class="close">&times;</span>
+                <h3>IA Documents</h3>
+
+                <div
+                  style="
+                    display: flex;
+                    justify-content: space-around;
+                    flex-direction: column;
+                  "
+                >
+                  <!-- Semester Dropdown inside Modal -->
+                  <div class="form-group">
+                    <label for="semesterModal">Select Semester:</label>
+                    <select
+                      [(ngModel)]="selectedSemesterInModal"
+                      name="semesterModal"
+                      id="semesterModal"
+                      class="form-control"
+                      (change)="getFileQuery()"
+                    >
+                      <option value="" disabled selected>
+                        Select Semester
+                      </option>
+                      <option *ngFor="let sem of semesters" [value]="sem">
+                        {{ sem }}
+                      </option>
+                    </select>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="subjectModal">Select Subject:</label>
+                    <select
+                      [(ngModel)]="selectedSubjectInModal"
+                      name="subjectModal"
+                      id="subjectModal"
+                      class="form-control"
+                      (change)="getFileQuery()"
+                    >
+                      <option value="" disabled>Select Subject</option>
+                      <option *ngFor="let sub of subjectsInModal" [value]="sub">
+                        {{ sub }}
+                      </option>
+                    </select>
+                  </div>
+                </div>
+
+                <!-- Display Documents in Table -->
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th>Attendance Document Name</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let doc of iaBankDocuments">
+                      <td>{{ doc.fileName }}</td>
+                      <td
+                        style="
+                          display: flex;
+                          justify-content: start;
+                          flex-direction: column;
+                        "
+                      >
+                        <!-- <a (click)="openFile(doc)" href="#">Open</a> | -->
+                        <!-- <a [href]="getDownloadLink(doc.semester, doc.fileName)" target="_blank">Download</a>  -->
+                        <a
+                          [href]="getDownloadLink(doc.semester, doc.fileName)"
+                          download
+                          >Download Document</a
+                        >
+                        <div
+                          class="delete"
+                          (click)="deleteFile(doc.semester, doc.fileName)"
+                        >
+                          Delete Document
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
               </div>
             </div>
           </div>
