@@ -132,57 +132,141 @@
       </div>
     </nav>
 
-<<<<<<< HEAD
     <div class="page-wrapper" style="background-image: url(./attendance.webp)">
-      <main class="col-md-9 col-lg-10 px-4 pt-4 main-content" >
+      <main class="col-md-9 col-lg-10 px-4 pt-4 main-content">
         <h2 class="text-center">ATTENDANCE MANAGEMENT</h2>
-        
+
         <!-- Semester Selection Dropdown -->
         <div class="form-group">
           <label for="semester">Select Semester:</label>
-          <select [(ngModel)]="selectedSemester" name="semester" id="semester" class="form-control">
+          <select
+            [(ngModel)]="selectedSemester"
+            name="semester"
+            id="semester"
+            class="form-control"
+            (change)="onSemesterChange()"
+          >
             <option value="" disabled selected>Select Semester</option>
-            <option *ngFor="let sem of semesters" [value]="sem">{{ sem }}</option>
+            <option *ngFor="let sem of semesters" [value]="sem">
+              {{ sem }}
+            </option>
           </select>
         </div>
 
         <div class="form-group mb-3">
-          <label for="documentType" class="form-label">Document Type:</label>
-          <select [(ngModel)]="selectedDocumentType" class="form-control" id="documentType">
-            <option value="" disabled>Choose a Document...</option>
-            <option value="excel">Excel</option>
-            <option value="pdf">PDF</option>
+          <label for="subject" class="form-label">Subject:</label>
+          <select
+            [(ngModel)]="selectedSubject"
+            name="subject"
+            class="form-control"
+            required
+            [disabled]="!selectedSemester || loadingSubjects"
+          >
+            <option value="" disabled>Select Subject</option>
+            <option *ngFor="let subject of subjects" [value]="subject.subject">
+              {{ subject.subject }} ({{ subject.subjectCode }})
+            </option>
           </select>
         </div>
-    
+
+        <div class="form-group mb-3">
+          <label for="month" class="form-label">Month :</label>
+          <select
+            [(ngModel)]="selectedMonth"
+            name="month"
+            class="form-control"
+            required
+            [disabled]="!selectedSemester"
+          >
+            <option value="" disabled>Select Month</option>
+            <option *ngFor="let month of months" [value]="month">
+              {{ month }}
+            </option>
+          </select>
+        </div>
+
         <!-- File Input -->
         <div class="form-group">
           <label for="fileInput">Upload Attendance Document:</label>
-          <input type="file" id="fileInput" (change)="onFileChange($event)" class="form-control" />
+          <input
+            type="file"
+            id="fileInput"
+            (change)="onFileChange($event)"
+            class="form-control"
+          />
         </div>
-    
+
         <!-- Upload Button -->
         <button (click)="uploadFile()" class="btn">Upload Document</button>
-    
+
         <!-- View Documents Button -->
-        <button (click)="viewQuestionBank()" class="btn btn-primary">View Documents</button>
-    
+        <button (click)="viewQuestionBank()" class="btn btn-primary">
+          View Documents
+        </button>
+
         <!-- Modal for Viewing Documents -->
         <div *ngIf="showModal" class="modal-overlay">
           <div class="modal-content">
             <span (click)="closeModal()" class="close">&times;</span>
             <h3>Attendance Documents</h3>
-        
-    
-            <!-- Semester Dropdown inside Modal -->
-            <div class="form-group">
-              <label for="semesterModal">Select Semester:</label>
-              <select [(ngModel)]="selectedSemesterInModal" name="semesterModal" id="semesterModal" class="form-control" (change)="getDocumentsBySemester()">
-                <option value="" disabled selected>Select Semester</option>
-                <option *ngFor="let sem of semesters" [value]="sem">{{ sem }}</option>
-              </select>
+
+            <div
+              style="
+                display: flex;
+                justify-content: space-around;
+                flex-direction: column;
+              "
+            >
+              <!-- Semester Dropdown inside Modal -->
+              <div class="form-group">
+                <label for="semesterModal">Select Semester:</label>
+                <select
+                  [(ngModel)]="selectedSemesterInModal"
+                  name="semesterModal"
+                  id="semesterModal"
+                  class="form-control"
+                  (change)="getFileQuery()"
+                >
+                  <option value="" disabled selected>Select Semester</option>
+                  <option *ngFor="let sem of semesters" [value]="sem">
+                    {{ sem }}
+                  </option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="monthModal">Select Month:</label>
+                <select
+                  [(ngModel)]="selectedMonthInModal"
+                  name="monthModal"
+                  id="monthModal"
+                  class="form-control"
+                  (change)="getFileQuery()"
+                >
+                  <option value="" disabled>Select Month</option>
+                  <option *ngFor="let month of months" [value]="month">
+                    {{ month }}
+                  </option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="subjectModal">Select Subject:</label>
+                <select
+                  [(ngModel)]="selectedSubjectInModal"
+                  name="subjectModal"
+                  id="subjectModal"
+                  class="form-control"
+                  (change)="getFileQuery()"
+                >
+                  <option value="" disabled>Select Subject</option>
+                  <option *ngFor="let sub of subjectsInModal" [value]="sub">
+                    {{ sub }}
+                  </option>
+                </select>
+              </div>
             </div>
-    
+
             <!-- Display Documents in Table -->
             <table class="table">
               <thead>
@@ -194,10 +278,26 @@
               <tbody>
                 <tr *ngFor="let doc of questionBankDocuments">
                   <td>{{ doc.fileName }}</td>
-                  <td>
-                    <a (click)="openFile(doc)" href="#">Open</a> | 
+                  <td
+                    style="
+                      display: flex;
+                      justify-content: start;
+                      flex-direction: column;
+                    "
+                  >
+                    <!-- <a (click)="openFile(doc)" href="#">Open</a> | -->
                     <!-- <a [href]="getDownloadLink(doc.semester, doc.fileName)" target="_blank">Download</a>  -->
-                    <a [href]="getDownloadLink(doc.semester, doc.fileName)" download>Download Document</a>
+                    <a
+                      [href]="getDownloadLink(doc.semester, doc.fileName)"
+                      download
+                      >Download Document</a
+                    >
+                    <div
+                      class="delete"
+                      (click)="deleteFile(doc.semester, doc.fileName)"
+                    >
+                      Delete Document
+                    </div>
                   </td>
                 </tr>
               </tbody>
@@ -206,21 +306,5 @@
         </div>
       </main>
     </div>
-    
-=======
-    <!-- Content Area -->
-    <main
-      class="col-md-9 col-lg-10 px-4 pt-4"
-      style="
-        background-image: url(/Background3.jpg);
-        background-size: cover;
-        background-position: center;
-      "
-    >
-      <div class="text-center">
-        <h1>WELCOME TO ATTENDENCE MANAGEMENT</h1>
-      </div>
-    </main>
   </div>
 </div>
->>>>>>> d330ddbebe8f7b2377d6f22a47959737887be8b5

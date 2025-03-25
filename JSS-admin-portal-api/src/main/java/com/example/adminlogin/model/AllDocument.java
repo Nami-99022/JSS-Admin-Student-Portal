@@ -30,6 +30,12 @@ public class AllDocument {
 
     @Column(name = "document_path")
     private String documentPath;
+    
+    @Column(name = "month")
+    private String month;
+    
+    @Column(name = "subject")
+    private String subject;
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = true)

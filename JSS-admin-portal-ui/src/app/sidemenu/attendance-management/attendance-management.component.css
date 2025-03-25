@@ -144,7 +144,7 @@ button.btn:hover {
   padding: 20px;
   border-radius: 8px; /* Smooth corners */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add some shadow */
-  width: 60%; /* Adjust width as needed */
+  width: 100%; /* Adjust width as needed */
   text-align: center; /* Center align content inside */
 }
 
@@ -165,7 +165,7 @@ button.btn:hover {
   cursor: pointer;
 }
 
-#semesterModal {
+ .semesterModal {
   width: 40%; /* Adjust the width */
   padding: 10px; /* Reduce padding */
   font-size: 14px; /* Smaller font size */
@@ -211,4 +211,12 @@ button.btn:hover {
 .form-group {
   width: 100%; /* Ensure dropdown takes full width */
   text-align: center; /* Center align dropdown */
+}
+
+div.delete:hover {
+  color: #a95555;
+}
+
+.delete {
+  color: #e70b0b;
 }

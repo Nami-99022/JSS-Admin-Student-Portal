@@ -1,11 +1,14 @@
 package com.example.adminlogin.controller;
 
 import com.example.adminlogin.model.AllDocument;
+import com.example.adminlogin.model.Subject;
 import com.example.adminlogin.model.User;
 import com.example.adminlogin.repository.AllDocumentRepo;
 
 import com.example.adminlogin.repository.UserRepo;
 import jakarta.annotation.PostConstruct;
+import jakarta.transaction.Transactional;
+
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.core.io.UrlResource;
 
@@ -92,7 +95,9 @@ public class AllDocumentController {
                                                           @RequestParam("uploadDate") String uploadDate,
                                                           @RequestParam("userEmail") String userEmail,
                                                           @RequestParam("semester") String semester,
-                                                          @RequestParam("documentCategory") String documentCategory) {
+                                                          @RequestParam("documentCategory") String documentCategory,
+                                                          @RequestParam("month") String month,
+                                                          @RequestParam("subject") String subject) {
         Map<String, String> response = new HashMap<>();
         if (file.isEmpty()) {
             response.put("message", "File upload failed: File is empty");
@@ -124,6 +129,8 @@ public class AllDocumentController {
             document.setSemester(semester);
             document.setDocumentCategory(documentCategory);
             document.setDocumentPath(filePath.toString());
+            document.setMonth(month);
+            document.setSubject(subject);
 
             Optional<User> userOptional = userRepo.findByEmail(userEmail);
             if (userOptional.isPresent()) {
@@ -242,16 +249,49 @@ public class AllDocumentController {
 //        return ResponseEntity.ok(documents);
 //    }
 
+//    @GetMapping("/category/{documentCategory}/{semester}")
+//    public ResponseEntity<List<AllDocument>> getDocumentsByCategoryAndSemester(
+//            @PathVariable("documentCategory") String documentCategory,
+//            @PathVariable("semester") String semester) {
+//
+//        // Log the received parameters
+//        System.out.println("Fetching documents for Category: " + documentCategory + " and Semester: " + semester);
+//
+//        // Query the database
+//        List<AllDocument> documents = allDocumentRepo.findBySemesterAndDocumentCategory(semester, documentCategory);
+//
+//        // Log the fetched documents
+//        if (documents.isEmpty()) {
+//            System.out.println("No documents found for Category: " + documentCategory + " and Semester: " + semester);
+//        } else {
+//            System.out.println("Found " + documents.size() + " documents.");
+//        }
+//
+//        return ResponseEntity.ok(documents);
+//    }
+
     @GetMapping("/category/{documentCategory}/{semester}")
-    public ResponseEntity<List<AllDocument>> getDocumentsByCategoryAndSemester(
+    public ResponseEntity<List<AllDocument>> getDocumentsByQuery(
             @PathVariable("documentCategory") String documentCategory,
-            @PathVariable("semester") String semester) {
+            @PathVariable("semester") String semester,
+@RequestParam(required = false, defaultValue = "") String month,
+@RequestParam(required = false, defaultValue = "") String subject) {
 
         // Log the received parameters
         System.out.println("Fetching documents for Category: " + documentCategory + " and Semester: " + semester);
-
-        // Query the database
-        List<AllDocument> documents = allDocumentRepo.findBySemesterAndDocumentCategory(semester, documentCategory);
+        
+        List<AllDocument> documents = new ArrayList<>();
+        
+        if (!month.isEmpty() && !subject.isEmpty())
+        	documents = allDocumentRepo.findBySemesterIsAndDocumentCategoryIsAndMonthIsAndSubject(semester, documentCategory, month, subject);
+        else if (!month.isEmpty())
+        	documents = allDocumentRepo.findBySemesterIsAndDocumentCategoryIsAndMonth(semester, documentCategory, month);
+        else if (!subject.isEmpty())
+        	documents = allDocumentRepo.findBySemesterIsAndDocumentCategoryIsAndSubject(semester, documentCategory, subject);
+        else
+         documents = allDocumentRepo.findBySemesterAndDocumentCategory(semester, documentCategory);
+        
+        
 
         // Log the fetched documents
         if (documents.isEmpty()) {
@@ -262,8 +302,6 @@ public class AllDocumentController {
 
         return ResponseEntity.ok(documents);
     }
-
-
 
 
     @GetMapping("/user/{id}")
@@ -393,6 +431,51 @@ public class AllDocumentController {
         }
 
 
+    }
+    
+    @Transactional
+    @DeleteMapping("/download/{semester}/{filename:.+}")
+    public ResponseEntity<Resource> deleteFile(@PathVariable String semester, @PathVariable String filename) {
+        try {
+            String uploadDir = getUploadDirectory(semester);
+            Path filePath = Paths.get(uploadDir).resolve(filename).normalize();
+
+            if (!Files.exists(filePath)) {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+            }
+
+            Resource resource = new UrlResource(filePath.toUri());
+            if (!resource.exists()) {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+            }
+
+            String mimeType = Files.probeContentType(filePath);
+            if (mimeType == null) {
+                mimeType = "application/octet-stream";
+            }
+            
+            Files.deleteIfExists(filePath);
+            allDocumentRepo.deleteBySemesterAndFileName(semester, filename);
+
+            return ResponseEntity.ok()
+                   .build();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+
+
+    }
+    
+    @GetMapping("/semester/{semester}")
+    public ResponseEntity<List<String>> getAllSemesters(@PathVariable String semester) {
+        List<String> semesters = allDocumentRepo.findBySemester(semester).stream()
+                .map(AllDocument::getSubject)
+                .distinct()
+                .sorted()
+                .collect(Collectors.toList());
+        return ResponseEntity.ok(semesters);
     }
 
 //    @GetMapping("/category/{documentCategory}/{semester}")
