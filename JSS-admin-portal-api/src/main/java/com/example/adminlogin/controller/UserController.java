@@ -38,7 +38,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.HttpStatus;
 import java.util.Optional;
-
+import java.util.stream.Collectors;
 
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
@@ -527,6 +527,15 @@ public class UserController {
     @GetMapping("/student")
     public ResponseEntity<List<User>> getAllStudent() {
         List<User> student = userRepository.findByRole("Student");
+        if (student.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Collections.emptyList());
+        }
+        return ResponseEntity.ok(student);
+    }
+   
+    @GetMapping("/studentnew/{semester}")
+    public ResponseEntity<List<User>> getAllStudentNew(@PathVariable String semester) {
+        List<User> student = userRepository.findByRoleAndSemester("Student", semester);
         if (student.isEmpty()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Collections.emptyList());
         }

@@ -56,6 +56,16 @@
           </li>
           <li class="nav-item mb-3">
             <a
+              routerLink="/attendance-management"
+              routerLinkActive="active"
+              (click)="newAttendancemanagement()"
+              class="nav-link text-white"
+            >
+              <i class="bi bi-check-square mr-2"></i> New Attendance Management
+            </a>
+          </li>
+          <li class="nav-item mb-3">
+            <a
               routerLink="/question-bank"
               routerLinkActive="active"
               (click)="questionbank()"
@@ -136,15 +146,10 @@
     <!-- Main Content Area -->
     <main
       class="col-md-9 col-lg-10 content"
-      style="
-        background-size: cover;
-        background-position: center;
-      "
+      style="background-size: cover; background-position: center"
     >
       <h1>WELCOME ADMIN</h1>
-      <h3>
-        INFORMATION SCIENCE AND ENGINEERING
-      </h3>
+      <h3>INFORMATION SCIENCE AND ENGINEERING</h3>
       <div class="container">
         <!-- About JSS Polytechnic (Full Width) -->
         <div class="row mb-3">

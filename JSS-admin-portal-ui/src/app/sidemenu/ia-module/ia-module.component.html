@@ -56,6 +56,16 @@
           </li>
           <li class="nav-item mb-3">
             <a
+              routerLink="/attendance-management"
+              routerLinkActive="active"
+              (click)="newAttendancemanagement()"
+              class="nav-link text-white"
+            >
+              <i class="bi bi-check-square mr-2"></i> New Attendance Management
+            </a>
+          </li>
+          <li class="nav-item mb-3">
+            <a
               routerLink="/question-bank"
               routerLinkActive="active"
               (click)="questionbank()"

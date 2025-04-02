@@ -17,25 +17,77 @@ import { StaffRegistrationComponent } from './staff-registration/staff-registrat
 import { StudentRegistrationComponent } from './student-registration/student-registration.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { SubjectManagementComponent } from './subject-management/subject-management.component';
+import { NewAttendenceManagementComponent } from './new-attendence-management/new-attendence-management.component';
 // import { StaffRegistrationComponent } from './staffmanagement/staff-registration/staff-registration.component';
 
 const routes: Routes = [
-  {path:'home',component: HomeComponent,canActivate: [authGuard]},
-  { path: 'attendance-management', component: AttendanceManagementComponent ,canActivate: [authGuard]},
-  { path: 'feedback-system', component: FeedbackSystemComponent,canActivate: [authGuard], },
-  {path:'ia-module',component: IAModuleComponent,canActivate: [authGuard]},
-  {path:'lesson-plan',component: LessonPlanComponent,canActivate: [authGuard]},
-  {path:'personal-documents',component: PersonalDocumentsComponent,canActivate: [authGuard]},
-  {path:'question-bank',component: QuestionBankComponent,canActivate: [authGuard]},
-  {path:'students-management',component: StudentManagementComponent,canActivate: [authGuard]},
-  {path:'students-registration',component: StudentRegistrationComponent,canActivate: [authGuard]},
-  {path:'teaching-aids',component: TeachingAidsComponent,canActivate: [authGuard]},
-  {path:'time-table',component: TimetableComponent,canActivate: [authGuard]},
-  {path:'staff-management',component: StaffmanagementComponent,canActivate: [authGuard]},
-    { path: 'staff-registration', component: StaffRegistrationComponent,canActivate: [authGuard] },
-    { path: 'subject-management', component: SubjectManagementComponent,canActivate: [authGuard] }
-  
-  
+  { path: 'home', component: HomeComponent, canActivate: [authGuard] },
+  {
+    path: 'attendance-management',
+    component: AttendanceManagementComponent,
+    canActivate: [authGuard],
+  },
+  {
+    path: 'new-attendance-management',
+    component: NewAttendenceManagementComponent,
+    canActivate: [authGuard],
+  },
+  {
+    path: 'feedback-system',
+    component: FeedbackSystemComponent,
+    canActivate: [authGuard],
+  },
+  { path: 'ia-module', component: IAModuleComponent, canActivate: [authGuard] },
+  {
+    path: 'lesson-plan',
+    component: LessonPlanComponent,
+    canActivate: [authGuard],
+  },
+  {
+    path: 'personal-documents',
+    component: PersonalDocumentsComponent,
+    canActivate: [authGuard],
+  },
+  {
+    path: 'question-bank',
+    component: QuestionBankComponent,
+    canActivate: [authGuard],
+  },
+  {
+    path: 'students-management',
+    component: StudentManagementComponent,
+    canActivate: [authGuard],
+  },
+  {
+    path: 'students-registration',
+    component: StudentRegistrationComponent,
+    canActivate: [authGuard],
+  },
+  {
+    path: 'teaching-aids',
+    component: TeachingAidsComponent,
+    canActivate: [authGuard],
+  },
+  {
+    path: 'time-table',
+    component: TimetableComponent,
+    canActivate: [authGuard],
+  },
+  {
+    path: 'staff-management',
+    component: StaffmanagementComponent,
+    canActivate: [authGuard],
+  },
+  {
+    path: 'staff-registration',
+    component: StaffRegistrationComponent,
+    canActivate: [authGuard],
+  },
+  {
+    path: 'subject-management',
+    component: SubjectManagementComponent,
+    canActivate: [authGuard],
+  },
 ];
 
 @NgModule({
@@ -43,12 +95,20 @@ const routes: Routes = [
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
-    AttendanceManagementComponent,FeedbackSystemComponent,
-    HomeComponent,IAModuleComponent,
-    LessonPlanComponent,PersonalDocumentsComponent,
-    QuestionBankComponent,StudentManagementComponent,
-    TeachingAidsComponent,TimetableComponent,StaffmanagementComponent,NgxPaginationModule,SubjectManagementComponent
+    AttendanceManagementComponent,
+    FeedbackSystemComponent,
+    HomeComponent,
+    IAModuleComponent,
+    LessonPlanComponent,
+    PersonalDocumentsComponent,
+    QuestionBankComponent,
+    StudentManagementComponent,
+    TeachingAidsComponent,
+    TimetableComponent,
+    StaffmanagementComponent,
+    NgxPaginationModule,
+    SubjectManagementComponent,
   ],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class SidemenuModule { }
+export class SidemenuModule {}

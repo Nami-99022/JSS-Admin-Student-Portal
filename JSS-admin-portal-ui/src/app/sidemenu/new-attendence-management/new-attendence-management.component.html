@@ -144,7 +144,7 @@
 
     <div class="page-wrapper" style="background-image: url(./attendance.webp)">
       <main class="col-md-9 col-lg-10 px-4 pt-4 main-content">
-        <h2 class="text-center">ATTENDANCE MANAGEMENT</h2>
+        <h2 class="text-center">New ATTENDANCE MANAGEMENT</h2>
 
         <!-- Semester Selection Dropdown -->
         <div class="form-group">
@@ -173,42 +173,50 @@
             [disabled]="!selectedSemester || loadingSubjects"
           >
             <option value="" disabled>Select Subject</option>
-            <option *ngFor="let subject of subjects" [value]="subject.subject">
+            <option *ngFor="let subject of subjects" [value]="subject.id">
               {{ subject.subject }} ({{ subject.subjectCode }})
             </option>
           </select>
         </div>
 
         <div class="form-group mb-3">
-          <label for="month" class="form-label">Month :</label>
-          <select
-            [(ngModel)]="selectedMonth"
-            name="month"
-            class="form-control"
-            required
-            [disabled]="!selectedSemester"
-          >
-            <option value="" disabled>Select Month</option>
-            <option *ngFor="let month of months" [value]="month">
-              {{ month }}
-            </option>
-          </select>
+          <label for="date" class="form-label">Date :</label>
+          <input type="date" [(ngModel)]="selectedDate" />
+          <p>Selected Date: {{ selectedDate }}</p>
         </div>
 
-        <!-- File Input -->
-        <div class="form-group">
-          <label for="fileInput">Upload Attendance Document:</label>
-          <input
-            type="file"
-            id="fileInput"
-            (change)="onFileChange($event)"
-            class="form-control"
-          />
-        </div>
-
-        <!-- Upload Button -->
-        <button (click)="uploadFile()" class="btn">Upload Document</button>
-
+        <!-- Display Documents in Table -->
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Student Name</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let stu of semStudents">
+              <td>{{ stu.userName }}</td>
+              <td
+                style="
+                  display: flex;
+                  justify-content: start;
+                  flex-direction: column;
+                "
+              >
+                <select [(ngModel)]="stu.attendenceStatus">
+                  <option value="" disabled>Select Status</option>
+                  <option *ngFor="let status of statuses" [value]="status">
+                    {{ status }}
+                  </option>
+                </select>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <!-- View Documents Button -->
+        <button (click)="updateAttendence()" class="btn btn-primary">
+          Update attendence
+        </button>
         <!-- View Documents Button -->
         <button (click)="viewQuestionBank()" class="btn btn-primary">
           View Documents
@@ -218,7 +226,7 @@
         <div *ngIf="showModal" class="modal-overlay">
           <div class="modal-content">
             <span (click)="closeModal()" class="close">&times;</span>
-            <h3>Attendance Documents</h3>
+            <h3>Attendance</h3>
 
             <div
               style="
@@ -235,27 +243,11 @@
                   name="semesterModal"
                   id="semesterModal"
                   class="form-control"
-                  (change)="getFileQuery()"
+                  (change)="onSemesterChangeInModal()"
                 >
                   <option value="" disabled selected>Select Semester</option>
                   <option *ngFor="let sem of semesters" [value]="sem">
                     {{ sem }}
-                  </option>
-                </select>
-              </div>
-
-              <div class="form-group">
-                <label for="monthModal">Select Month:</label>
-                <select
-                  [(ngModel)]="selectedMonthInModal"
-                  name="monthModal"
-                  id="monthModal"
-                  class="form-control"
-                  (change)="getFileQuery()"
-                >
-                  <option value="" disabled>Select Month</option>
-                  <option *ngFor="let month of months" [value]="month">
-                    {{ month }}
                   </option>
                 </select>
               </div>
@@ -267,51 +259,55 @@
                   name="subjectModal"
                   id="subjectModal"
                   class="form-control"
-                  (change)="getFileQuery()"
                 >
                   <option value="" disabled>Select Subject</option>
-                  <option *ngFor="let sub of subjectsInModal" [value]="sub">
-                    {{ sub }}
+                  <option *ngFor="let sub of subjectsInModal" [value]="sub.id">
+                    {{ sub.subject }}
                   </option>
                 </select>
               </div>
+
+              <div class="form-group mb-3">
+                <label for="date" class="form-label">Start Date :</label>
+                <input type="date" [(ngModel)]="selectedStartDate" />
+                <p>Selected Start Date: {{ selectedStartDate }}</p>
+              </div>
+
+              <div class="form-group mb-3">
+                <label for="date" class="form-label">End Date :</label>
+                <input type="date" [(ngModel)]="selectedEndDate" />
+                <p>Selected End Date: {{ selectedEndDate }}</p>
+              </div>
             </div>
 
-            <!-- Display Documents in Table -->
-            <table class="table">
-              <thead>
-                <tr>
-                  <th>Attendance Document Name</th>
-                  <th>Action</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr *ngFor="let doc of questionBankDocuments">
-                  <td>{{ doc.fileName }}</td>
-                  <td
-                    style="
-                      display: flex;
-                      justify-content: start;
-                      flex-direction: column;
-                    "
-                  >
-                    <!-- <a (click)="openFile(doc)" href="#">Open</a> | -->
-                    <!-- <a [href]="getDownloadLink(doc.semester, doc.fileName)" target="_blank">Download</a>  -->
-                    <a
-                      [href]="getDownloadLink(doc.semester, doc.fileName)"
-                      download
-                      >Download Document</a
-                    >
-                    <div
-                      class="delete"
-                      (click)="deleteFile(doc.semester, doc.fileName)"
-                    >
-                      Delete Document
-                    </div>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+            <!-- View Documents Button -->
+            <button (click)="getAttendence()" class="btn btn-primary">
+              View Attendence
+            </button>
+
+            <div>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th *ngFor="let date of dateHeaders">{{ date }}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let student of semStudentsInModal">
+                    <td>{{ student.userName }}</td>
+                    <td *ngFor="let date of dateHeaders">
+                      <select
+                        [(ngModel)]="attendanceMap[student.studentId][date]"
+                      >
+                        <option value="Absent">Absent</option>
+                        <option value="Present">Present</option>
+                      </select>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
       </main>

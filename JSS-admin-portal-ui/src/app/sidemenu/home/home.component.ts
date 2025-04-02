@@ -9,10 +9,8 @@ import { StaffService } from '../staff.service';
   standalone: true,
   imports: [CommonModule, FormsModule],
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']  // Ensure this is 'styleUrls' (plural)
+  styleUrls: ['./home.component.css'], // Ensure this is 'styleUrls' (plural)
 })
-
-
 export class HomeComponent implements OnInit {
   staffMembers: any[] = [];
 
@@ -32,7 +30,9 @@ export class HomeComponent implements OnInit {
       }
     );
   }
-
+  newAttendancemanagement() {
+    this.router.navigate(['/sidemenu/new-attendance-management']);
+  }
   home() {
     this.router.navigate(['/sidemenu/home']);
   }
