@@ -85,6 +85,17 @@ export class TimetableComponent {
               FRIDAY: { '9.00 TO 10.00 am': 'FEEE Lab B1 / IT skill Lab B2', '11.00 TO 12.00 pm': 'ITSKILLS (THEORY)', '12.00 Tpm TO 1.00 pm': 'FEEE (THEORY)', '2.00 to 3.00 PM': 'ES', '3.00 tp 4.00 PM': 'FOC' },
               SATURDAY: { '11.00 TO 12.00 pm': 'ITSKILLS (THEORY)', '12.00 Tpm TO 1.00 pm': 'FOC' }
             },
+
+            2: {
+              MONDAY: { '11.00 TO 12.00 pm': 'PMS', '12.00 Tpm TO 1.00 pm': 'SAA', '2.00 to 3.00 PM': 'SS-1', '3.00 tp 4.00 PM': 'CS(THEORY)' },
+              TUESDAY: { '11.00 TO 12.00 pm': 'SAA Lab B1 / CS Lab B2', '3.00 tp 4.00 PM': 'SAA Lab B2 / CS Lab B1' },
+              WEDNESDAY: { '11.00 TO 12.00 pm': 'PMS', '12.00 Tpm TO 1.00 pm': 'PMS', '3.00 tp 4.00 PM': 'NSS / NCC / REDCROSS' },
+              THURSDAY: { '11.00 TO 12.00 pm': 'SS-1', '12.00 Tpm TO 1.00 pm': 'PMS', '3.00 tp 4.00 PM': 'CAEG Lab B2 / M&A Lab B1' },
+              FRIDAY: { '9.00 TO 10.00 am': 'CAEG Lab B1 / M&A Lab B2', '11.00 TO 12.00 pm': 'M&A (THEORY)', '12.00 Tpm TO 1.00 pm': 'SAA (THEORY)', '2.00 to 3.00 PM': 'SS-1', '3.00 tp 4.00 PM': 'PMS' },
+              SATURDAY: { '11.00 TO 12.00 pm': 'CAEG (THEORY)', '12.00 Tpm TO 1.00 pm': 'CS' }
+            },
+
+
             3: {
               MONDAY: { '9.00 TO 10.00 am': 'DBMS', '10.00 TO 11.00 am': 'PYTHON', '11.00 TO 12.00 pm': 'DBMS LAB', '12.00 Tpm TO 1.00 pm': 'DBMS LAB', '2.00 to 3.00 PM': 'CHMA LAB', '3.00 tp 4.00 PM': 'CHMA LAB' },
               TUESDAY: { '9.00 TO 10.00 am': 'KANNADA', '10.00 TO 11.00 am': 'CHMA', '11.00 TO 12.00 pm': 'CN', '12.00 Tpm TO 1.00 pm': 'PYTHON', '2.00 to 3.00 PM': 'CHMA LAB', '3.00 tp 4.00 PM': 'CHMA LAB' },
@@ -92,6 +103,15 @@ export class TimetableComponent {
               THURSDAY: { '9.00 TO 10.00 am': 'KANNADA', '10.00 TO 11.00 am': 'PYTHON', '11.00 TO 12.00 pm': 'CN LAB', '12.00 Tpm TO 1.00 pm': 'CN LAB', '2.00 to 3.00 PM': 'NSS/ NCC/ REDCROSS' },
               FRIDAY: { '9.00 TO 10.00 am': 'CN', '10.00 TO 11.00 am': 'CHMA', '11.00 TO 12.00 pm': 'PYTHON LAB', '12.00 Tpm TO 1.00 pm': 'PYTHON LAB', '2.00 to 3.00 PM': 'CN', '3.00 tp 4.00 PM': 'DBMS' },
               SATURDAY: { '9.00 TO 10.00 am': 'DBMS', '10.00 TO 11.00 am': 'CHMA', '11.00 TO 12.00 pm': 'CN LAB' },
+            },
+
+            4 : {
+              MONDAY: { '9.00 TO 10.00 am': 'DSP(T)', '10.00 TO 11.00 am': 'OOP&DJ', '11.00 TO 12.00 pm': 'SAA(L)', '12.00 Tpm TO 1.00 pm': 'IC',"1.00 to 2.00 PM": "LUNCH BREAK", '2.00 to 3.00 PM': 'OS&A LAB', '3.00 tp 4.00 PM': 'OS&A LAB' },
+              TUESDAY: { '9.00 TO 10.00 am': 'SEP&P(T)', '10.00 TO 11.00 am': 'PMS(L)', '11.00 TO 12.00 pm': 'OS&A', '12.00 Tpm TO 1.00 pm': 'M&A', '2.00 to 3.00 PM': 'SEP&P LAB', '3.00 tp 4.00 PM': 'SEP&P LAB' },
+              WEDNESDAY: { '9.00 TO 10.00 am': 'SAA', '10.00 TO 11.00 am': 'IC', '11.00 TO 12.00 pm': 'DSP LAB', '12.00 Tpm TO 1.00 pm': 'DSP LAB', '2.00 to 3.00 PM': 'M&A', '3.00 tp 4.00 PM': 'OS&A' },
+              THURSDAY: { '9.00 TO 10.00 am': 'OOP&DJ(P)', '10.00 TO 11.00 am': 'OOP&DJ(P)', '11.00 TO 12.00 pm': 'OS&A LAB', '12.00 Tpm TO 1.00 pm': 'OS&A LAB', '2.00 to 3.00 PM': 'NSS/ NCC/ REDCROSS' },
+              FRIDAY: { '9.00 TO 10.00 am': 'IC', '10.00 TO 11.00 am': 'SAA', '11.00 TO 12.00 pm': 'OOP&DJ LAB', '12.00 Tpm TO 1.00 pm': 'OOP&DJ LAB', '2.00 to 3.00 PM': 'M&A', '3.00 tp 4.00 PM': 'PMS' },
+              SATURDAY: { '9.00 TO 10.00 am': 'PMS', '10.00 TO 11.00 am': 'SEP&P', '11.00 TO 12.00 pm': 'DSP LAB' },
             },
             
               5: {
@@ -142,8 +162,58 @@ export class TimetableComponent {
                   "10.00 TO 11.00 am": "",
                   "11.00 TO 12.00 pm": "Industry / Seminar"
                 }
+              },
+
+              6: {
+                MONDAY: {
+                  "9.00 TO 10.00 am": " ",
+                  "10.00 TO 11.00 am": " ",
+                  "11.00 TO 12.00 pm": "Project",
+                  "12.00 Tpm TO 1.00 pm": "Project",
+                  "1.00 to 2.00 PM": "LUNCH BREAK",
+                  "2.00 to 3.00 PM": "RP",
+                  "3.00 tp 4.00 PM": "RP"
+                },
+                TUESDAY: {
+                  "9.00 TO 10.00 am": "RP",
+                  "10.00 TO 11.00 am": "RP",
+                  "11.00 TO 12.00 pm": " ",
+                  "12.00 Tpm TO 1.00 pm": " ",
+                  "1.00 to 2.00 PM": " ",
+                  "2.00 to 3.00 PM": "MVP",
+                  "3.00 tp 4.00 PM": "MVP"
+                },
+                WEDNESDAY: {
+                  "9.00 TO 10.00 am": "Project ",
+                  "10.00 TO 11.00 am": "Project ",
+                  "11.00 TO 12.00 pm": " ",
+                  "12.00 Tpm TO 1.00 pm": " ",
+                  "1.00 to 2.00 PM": " ",
+                  "2.00 to 3.00 PM": "RP ",
+                  "3.00 tp 4.00 PM": "RP "
+                },
+                THURSDAY: {
+                  "9.00 TO 10.00 am": " ",
+                  "10.00 TO 11.00 am": " ",
+                  "11.00 TO 12.00 pm": "MVP",
+                  "12.00 Tpm TO 1.00 pm": "MVP",
+                  "1.00 to 2.00 PM": "",
+                  "2.00 to 3.00 PM": "NSS/ NCC/ REDCROSS"
+                },
+                FRIDAY: {
+                  "9.00 TO 10.00 am": " ",
+                  "10.00 TO 11.00 am": "RP ",
+                  "11.00 TO 12.00 pm": "RP ",
+                  "12.00 Tpm TO 1.00 pm": " ",
+                  "1.00 to 2.00 PM": " "
+                },
+                SATURDAY: {
+                  "9.00 TO 10.00 am": " Project",
+                  "10.00 TO 11.00 am": "",
+                  "11.00 TO 12.00 pm": "Project"
+                }
+
               }
-            
        
     };
     
