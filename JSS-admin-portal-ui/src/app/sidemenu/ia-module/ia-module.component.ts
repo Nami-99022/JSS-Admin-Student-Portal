@@ -69,6 +69,9 @@ export class IAModuleComponent implements OnInit {
   teachingaids() {
     this.router.navigate(['/sidemenu/teaching-aids']);
   }
+  newAttendancemanagement() {
+    this.router.navigate(['/sidemenu/new-attendance-management']);
+  }
   personaldocuments() {
     this.router.navigate(['/sidemenu/personal-documents']);
   }

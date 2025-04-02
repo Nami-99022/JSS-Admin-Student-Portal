@@ -35,6 +35,9 @@ export class AttendanceManagementComponent {
   loadingSubjectsInModal: boolean = false;
   constructor(private router: Router, private http: HttpClient) {}
 
+  newAttendancemanagement() {
+    this.router.navigate(['/sidemenu/new-attendance-management']);
+  }
   home() {
     this.router.navigate(['/sidemenu/home']);
   }
